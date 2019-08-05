@@ -24,8 +24,34 @@ class AttendeeListController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
+        setupViewModel()
         // Do any additional setup after loading the view.
     }
 
+    func setupView() {
+        view = mainView
+        mainView.dataSource = self
+    }
+    
+    func setupViewModel() {
+        viewModel.delegate = self
+        viewModel.loadData()
+    }
 }
 
+extension AttendeeListController: AttendeeListViewDataSource {
+    func getNumberOfAttendees(in view: AttendeeListView) -> Int {
+        return viewModel.getAttendeeData().count
+    }
+    
+    func getDataForCell(in view: AttendeeListView, for section: Int) -> [AttendeeCell.Descriptor] {
+        return viewModel.getAttendeeData()
+    }
+}
+
+extension AttendeeListController: AttendeeViewModelDelegate {
+    func loadedData(from viewModel: AttendeeViewModel) {
+        mainView.reloadView()
+    }
+}

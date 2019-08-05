@@ -9,8 +9,15 @@
 import Foundation
 import UIKit
 
+protocol AttendeeListViewDataSource: class {
+    func getNumberOfAttendees(in view: AttendeeListView) -> Int
+    func getDataForCell(in view: AttendeeListView, for section: Int) -> [AttendeeCell.Descriptor]
+}
+
 class AttendeeListView: UIView {
     let tableView = UITableView()
+    
+    weak var dataSource: AttendeeListViewDataSource?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,14 +36,12 @@ class AttendeeListView: UIView {
     }
     
     func setupTableView() {
-//        tableView.dataSource = self
-//        tableView.delegate = self
+        tableView.dataSource = self
         
         tableView.backgroundColor = .white
         tableView.separatorStyle = .singleLine
         tableView.allowsSelection = true
-//        tableView.register(AttendeeCell.self, forCellReuseIdentifier: AttendeeCell.reuseIdentifier)
-        
+        tableView.register(AttendeeCell.self, forCellReuseIdentifier: AttendeeCell.reuseIdentifier)
         addSubview(tableView)
     }
     
@@ -54,5 +59,22 @@ class AttendeeListView: UIView {
             tableView.leftAnchor.constraint(equalTo: leftAnchor),
             tableView.rightAnchor.constraint(equalTo: rightAnchor)
             ])
+    }
+    
+    func reloadView() {
+        tableView.reloadData()
+    }
+}
+
+extension AttendeeListView: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataSource?.getNumberOfAttendees(in: self) ?? 0
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: AttendeeCell.reuseIdentifier, for: indexPath) as? AttendeeCell else { return UITableViewCell() }
+        guard let descriptor = dataSource?.getDataForCell(in: self, for: 0)[indexPath.row] else { return AttendeeCell() }
+        cell.configure(with: descriptor)
+        return cell
     }
 }

@@ -7,7 +7,29 @@
 //
 
 import Foundation
+protocol AttendeeViewModelDelegate: class {
+    func loadedData(from viewModel: AttendeeViewModel)
+}
 
 class AttendeeViewModel {
+    weak var delegate: AttendeeViewModelDelegate?
+    private var myData = [AttendeeCell.Descriptor]()
+
+    func loadData() {
+        let example: AttendeeCell.Descriptor = AttendeeCell.Descriptor(firstName: "Ahmad", lastName: "Ibrahim")
+        let example2: AttendeeCell.Descriptor = AttendeeCell.Descriptor(firstName: "Obaida", lastName: "Albaroudi")
+        let example3: AttendeeCell.Descriptor = AttendeeCell.Descriptor(firstName: "Ahmad", lastName: "Jawaid")
+        let example4: AttendeeCell.Descriptor = AttendeeCell.Descriptor(firstName: "Omar", lastName: "Mawi")
+
+        myData.append(example)
+        myData.append(example2)
+        myData.append(example3)
+        myData.append(example4)
+        delegate?.loadedData(from: self)
+    }
     
+    func getAttendeeData() -> [AttendeeCell.Descriptor] {
+        return myData
+    }
+
 }

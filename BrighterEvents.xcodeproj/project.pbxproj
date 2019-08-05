@@ -16,6 +16,7 @@
 		1D6418E422DAACEA00B45F94 /* BrighterEventsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6418E322DAACEA00B45F94 /* BrighterEventsUITests.swift */; };
 		1DB0868622E5195C00B5A69B /* AttendeeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB0868522E5195C00B5A69B /* AttendeeListView.swift */; };
 		1DB0868822E5197C00B5A69B /* AttendeeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DB0868722E5197C00B5A69B /* AttendeeViewModel.swift */; };
+		1DBE39A122F6260700C5EE2D /* AttendeeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBE39A022F6260700C5EE2D /* AttendeeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		1D6418E522DAACEA00B45F94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1DB0868522E5195C00B5A69B /* AttendeeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendeeListView.swift; sourceTree = "<group>"; };
 		1DB0868722E5197C00B5A69B /* AttendeeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendeeViewModel.swift; sourceTree = "<group>"; };
+		1DBE39A022F6260700C5EE2D /* AttendeeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendeeCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				1D6418C522DAACE900B45F94 /* AttendeeListController.swift */,
 				1DB0868522E5195C00B5A69B /* AttendeeListView.swift */,
 				1DB0868722E5197C00B5A69B /* AttendeeViewModel.swift */,
+				1DBE39A022F6260700C5EE2D /* AttendeeCell.swift */,
 				1D6418C322DAACE900B45F94 /* AppDelegate.swift */,
 				1D6418CA22DAACEA00B45F94 /* Assets.xcassets */,
 				1D6418CF22DAACEA00B45F94 /* Info.plist */,
@@ -271,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DB0868622E5195C00B5A69B /* AttendeeListView.swift in Sources */,
+				1DBE39A122F6260700C5EE2D /* AttendeeCell.swift in Sources */,
 				1D6418C622DAACE900B45F94 /* AttendeeListController.swift in Sources */,
 				1DB0868822E5197C00B5A69B /* AttendeeViewModel.swift in Sources */,
 				1D6418C422DAACE900B45F94 /* AppDelegate.swift in Sources */,
