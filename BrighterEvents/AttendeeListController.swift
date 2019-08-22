@@ -26,14 +26,27 @@ class AttendeeListController: UIViewController {
         super.viewDidLoad()
         setupView()
         setupViewModel()
-        // Do any additional setup after loading the view.
+        
     }
 
+    // MARK: Setup View
     func setupView() {
         view = mainView
         mainView.dataSource = self
+        setupNavBar()
     }
     
+    func setupNavBar() {
+        title = "Brighter Events"
+        if #available(iOS 11.0, *) {
+            self.navigationController?.navigationBar.prefersLargeTitles = true
+        }
+        
+        navigationController?.navigationBar.largeTitleTextAttributes =
+            [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 50)]
+    }
+    
+    // MARK: Setup ViewModel
     func setupViewModel() {
         viewModel.delegate = self
         viewModel.loadData()

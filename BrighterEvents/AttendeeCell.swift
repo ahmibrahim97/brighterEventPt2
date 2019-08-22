@@ -37,6 +37,7 @@ class AttendeeCell: UITableViewCell {
     func setupAttendeeName() {
         attendeeName.text = ""
         attendeeName.adjustsFontSizeToFitWidth = true
+        attendeeName.font = .systemFont(ofSize: 25)
         contentView.addSubview(attendeeName)
     }
     

@@ -14,6 +14,10 @@ protocol AttendeeListViewDataSource: class {
     func getDataForCell(in view: AttendeeListView, for section: Int) -> [AttendeeCell.Descriptor]
 }
 
+//protocol AttendeeListViewDelegate: class {
+//    func checkedIn(in view: AttendeeListView, index: IndexPath)
+//}
+
 class AttendeeListView: UIView {
     let tableView = UITableView()
     
@@ -37,9 +41,11 @@ class AttendeeListView: UIView {
     
     func setupTableView() {
         tableView.dataSource = self
+        tableView.delegate = self
         
         tableView.backgroundColor = .white
         tableView.separatorStyle = .singleLine
+        tableView.separatorInset = .zero
         tableView.allowsSelection = true
         tableView.register(AttendeeCell.self, forCellReuseIdentifier: AttendeeCell.reuseIdentifier)
         addSubview(tableView)
@@ -76,5 +82,24 @@ extension AttendeeListView: UITableViewDataSource {
         guard let descriptor = dataSource?.getDataForCell(in: self, for: 0)[indexPath.row] else { return AttendeeCell() }
         cell.configure(with: descriptor)
         return cell
+    }
+}
+
+extension AttendeeListView: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let checkInAction = UITableViewRowAction(style: .normal, title: "") { (action, index) in
+            print("Checked In ", index)
+        }
+        checkInAction.backgroundColor = .green
+        
+        return [checkInAction]
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
     }
 }
