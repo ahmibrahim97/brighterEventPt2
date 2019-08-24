@@ -14,14 +14,15 @@ protocol AttendeeListViewDataSource: class {
     func getDataForCell(in view: AttendeeListView, for section: Int) -> [AttendeeCell.Descriptor]
 }
 
-//protocol AttendeeListViewDelegate: class {
-//    func checkedIn(in view: AttendeeListView, index: IndexPath)
-//}
+protocol AttendeeListViewDelegate: class {
+    func checkedIn(in view: AttendeeListView, index: IndexPath)
+}
 
 class AttendeeListView: UIView {
     let tableView = UITableView()
     
     weak var dataSource: AttendeeListViewDataSource?
+    weak var delegate: AttendeeListViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -92,9 +93,11 @@ extension AttendeeListView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let checkInAction = UITableViewRowAction(style: .normal, title: "") { (action, index) in
-            print("Checked In ", index)
+            self.delegate?.checkedIn(in: self, index: index)
+            let currCell = self.tableView.cellForRow(at: index) as? AttendeeCell
+            currCell?.makeCellColorGreen()
         }
-        checkInAction.backgroundColor = .green
+        checkInAction.backgroundColor = UIColor(red: 130/255, green: 216/255, blue: 166/255, alpha: 1.0)
         
         return [checkInAction]
     }

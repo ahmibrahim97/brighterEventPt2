@@ -68,3 +68,9 @@ extension AttendeeListController: AttendeeViewModelDelegate {
         mainView.reloadView()
     }
 }
+
+extension AttendeeListController: AttendeeListViewDelegate {
+    func checkedIn(in view: AttendeeListView, index: IndexPath) {
+        
+    }
+}

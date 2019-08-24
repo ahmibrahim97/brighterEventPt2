@@ -37,7 +37,7 @@ class AttendeeCell: UITableViewCell {
     func setupAttendeeName() {
         attendeeName.text = ""
         attendeeName.adjustsFontSizeToFitWidth = true
-        attendeeName.font = .systemFont(ofSize: 25)
+        attendeeName.font = .systemFont(ofSize: 20)
         contentView.addSubview(attendeeName)
     }
     
@@ -59,5 +59,9 @@ class AttendeeCell: UITableViewCell {
         setupViews()
         setupConstraints()
         attendeeName.text = (descriptor.lastName ?? "LastName") + ", " + (descriptor.firstName ?? "FirstName")
+    }
+    
+    func makeCellColorGreen() {
+        self.backgroundColor = UIColor(red: 130/255, green: 216/255, blue: 166/255, alpha: 1.0)
     }
 }

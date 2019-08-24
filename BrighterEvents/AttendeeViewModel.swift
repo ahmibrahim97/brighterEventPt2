@@ -21,12 +21,14 @@ class AttendeeViewModel {
         let example3: AttendeeCell.Descriptor = AttendeeCell.Descriptor(firstName: "Ahmad", lastName: "Jawaid")
         let example4: AttendeeCell.Descriptor = AttendeeCell.Descriptor(firstName: "Omar", lastName: "Mawi")
         let example5: AttendeeCell.Descriptor = AttendeeCell.Descriptor(firstName: "Majd", lastName: "Said")
+        let example6: AttendeeCell.Descriptor = AttendeeCell.Descriptor(firstName: "Mureed", lastName: "Ibrahim")
 
         myData.append(example)
         myData.append(example2)
         myData.append(example3)
         myData.append(example4)
         myData.append(example5)
+        myData.append(example6)
         delegate?.loadedData(from: self)
     }
     
