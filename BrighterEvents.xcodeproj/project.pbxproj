@@ -39,7 +39,7 @@
 /* Begin PBXFileReference section */
 		1D6418C022DAACE900B45F94 /* BrighterEvents.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrighterEvents.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D6418C322DAACE900B45F94 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1D6418C522DAACE900B45F94 /* AttendeeListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendeeListController.swift; sourceTree = "<group>"; };
+		1D6418C522DAACE900B45F94 /* AttendeeListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendeeListController.swift; sourceTree = "<group>"; usesTabs = 0; };
 		1D6418C822DAACE900B45F94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1D6418CA22DAACEA00B45F94 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1D6418CD22DAACEA00B45F94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
