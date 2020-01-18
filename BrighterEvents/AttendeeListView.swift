@@ -12,10 +12,11 @@ import UIKit
 protocol AttendeeListViewDataSource: class {
     func getNumberOfAttendees(in view: AttendeeListView) -> Int
     func getDataForCell(in view: AttendeeListView, for section: Int) -> [AttendeeCell.Descriptor]
+    func checkedIn(in view: AttendeeListView, index: IndexPath) -> Bool
 }
 
 protocol AttendeeListViewDelegate: class {
-    func checkedIn(in view: AttendeeListView, index: IndexPath)
+    func checkIn(in view: AttendeeListView, index: IndexPath)
 }
 
 class AttendeeListView: UIView {
@@ -93,12 +94,19 @@ extension AttendeeListView: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let checkInAction = UITableViewRowAction(style: .normal, title: "") { (action, index) in
-            self.delegate?.checkedIn(in: self, index: index)
+            self.delegate?.checkIn(in: self, index: index)
             let currCell = self.tableView.cellForRow(at: index) as? AttendeeCell
-            currCell?.makeCellColorGreen()
+            if self.dataSource?.checkedIn(in: self, index: index) ?? true {
+                currCell?.makeCellColorGreen()
+            } else {
+                currCell?.makeCellColorClear()
+            }
         }
-        checkInAction.backgroundColor = UIColor(red: 130/255, green: 216/255, blue: 166/255, alpha: 1.0)
-        
+        if self.dataSource?.checkedIn(in: self, index: indexPath) ?? true {
+            checkInAction.backgroundColor = UIColor.red
+        } else {
+            checkInAction.backgroundColor = UIColor(red: 130/255, green: 216/255, blue: 166/255, alpha: 1.0)
+        }
         return [checkInAction]
     }
     

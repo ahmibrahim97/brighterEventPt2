@@ -14,6 +14,7 @@ class AttendeeCell: UITableViewCell {
     static let reuseIdentifier = String(describing: AttendeeCell.self)
     
     struct Descriptor {
+        var id: Int?
         var firstName: String?
         var lastName: String?
     }
@@ -63,5 +64,9 @@ class AttendeeCell: UITableViewCell {
     
     func makeCellColorGreen() {
         self.backgroundColor = UIColor(red: 130/255, green: 216/255, blue: 166/255, alpha: 1.0)
+    }
+    
+    func makeCellColorClear() {
+        self.backgroundColor = .white
     }
 }

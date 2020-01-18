@@ -11,6 +11,7 @@ import UIKit
 class AttendeeListController: UIViewController {
     let mainView: AttendeeListView
     let viewModel: AttendeeViewModel
+    var attendees = [AttendeeCell.Descriptor]()
     
     init(view: AttendeeListView, viewModel: AttendeeViewModel) {
         self.mainView = view
@@ -33,6 +34,7 @@ class AttendeeListController: UIViewController {
     func setupView() {
         view = mainView
         mainView.dataSource = self
+        mainView.delegate = self
         setupNavBar()
     }
     
@@ -50,16 +52,21 @@ class AttendeeListController: UIViewController {
     func setupViewModel() {
         viewModel.delegate = self
         viewModel.loadData()
+        self.attendees = viewModel.getAttendeeData()
     }
 }
 
 extension AttendeeListController: AttendeeListViewDataSource {
+    func checkedIn(in view: AttendeeListView, index: IndexPath) -> Bool {
+        return viewModel.checkedIn(attendee: attendees[index.row])
+    }
+    
     func getNumberOfAttendees(in view: AttendeeListView) -> Int {
-        return viewModel.getAttendeeData().count
+        return attendees.count
     }
     
     func getDataForCell(in view: AttendeeListView, for section: Int) -> [AttendeeCell.Descriptor] {
-        return viewModel.getAttendeeData()
+        return attendees
     }
 }
 
@@ -70,7 +77,7 @@ extension AttendeeListController: AttendeeViewModelDelegate {
 }
 
 extension AttendeeListController: AttendeeListViewDelegate {
-    func checkedIn(in view: AttendeeListView, index: IndexPath) {
-        
+    func checkIn(in view: AttendeeListView, index: IndexPath) {
+        viewModel.checkIn(attendee: attendees[index.row])
     }
 }
